@@ -1,9 +1,9 @@
-/Users/maninderpal/NetBeansProjects/WebServer/src/main/java/com/wishyHub/WebServer/TomcatController.java
-/Users/maninderpal/NetBeansProjects/WebServer/src/main/java/com/wishyHub/WebServer/repository/UserRepository.java
-/Users/maninderpal/NetBeansProjects/WebServer/src/main/java/com/wishyHub/WebServer/User/User.java
-/Users/maninderpal/NetBeansProjects/WebServer/src/main/java/com/wishyHub/WebServer/Uploader/FileUploaderController.java
-/Users/maninderpal/NetBeansProjects/WebServer/src/main/java/com/wishyHub/WebServer/repository/uploadRepository.java
-/Users/maninderpal/NetBeansProjects/WebServer/src/main/java/com/wishyHub/WebServer/User/UserController.java
-/Users/maninderpal/NetBeansProjects/WebServer/src/main/java/com/wishyHub/WebServer/PostController.java
-/Users/maninderpal/NetBeansProjects/WebServer/src/main/java/com/wishyHub/WebServer/WebServerApplication.java
-/Users/maninderpal/NetBeansProjects/WebServer/src/main/java/com/wishyHub/WebServer/Uploader/FileDetail.java
+/Users/maninderpal/Desktop/Tomcat Java server/WishyhubSpring/WebServer/src/main/java/com/wishyHub/WebServer/User/UserController.java
+/Users/maninderpal/Desktop/Tomcat Java server/WishyhubSpring/WebServer/src/main/java/com/wishyHub/WebServer/Uploader/FileUploaderController.java
+/Users/maninderpal/Desktop/Tomcat Java server/WishyhubSpring/WebServer/src/main/java/com/wishyHub/WebServer/WebServerApplication.java
+/Users/maninderpal/Desktop/Tomcat Java server/WishyhubSpring/WebServer/src/main/java/com/wishyHub/WebServer/repository/uploadRepository.java
+/Users/maninderpal/Desktop/Tomcat Java server/WishyhubSpring/WebServer/src/main/java/com/wishyHub/WebServer/PostController.java
+/Users/maninderpal/Desktop/Tomcat Java server/WishyhubSpring/WebServer/src/main/java/com/wishyHub/WebServer/User/User.java
+/Users/maninderpal/Desktop/Tomcat Java server/WishyhubSpring/WebServer/src/main/java/com/wishyHub/WebServer/Uploader/FileDetail.java
+/Users/maninderpal/Desktop/Tomcat Java server/WishyhubSpring/WebServer/src/main/java/com/wishyHub/WebServer/repository/UserRepository.java
+/Users/maninderpal/Desktop/Tomcat Java server/WishyhubSpring/WebServer/src/main/java/com/wishyHub/WebServer/TomcatController.java

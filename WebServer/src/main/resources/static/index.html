@@ -2,6 +2,7 @@
   <!DOCTYPE html>
   <html>
   <head>
+    <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/popup.css">
@@ -11,6 +12,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <!--   <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script> -->
+
+<script src="js/View/View.js"></script>
   <script src="js/home.js"></script>
   <script src="js/jQuery_method.js"></script>
 
@@ -39,7 +42,7 @@
 
     <div id="sidebar" class="left" >
       
-      <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+      <input type="text" id="mySearch" onkeyup="searchFunction()" placeholder="Search.." title="Type in a category">
       <ul id="myMenu">
         <!-- <li><a href="#">html</a></li> -->
        
@@ -64,23 +67,7 @@
   <div  class="footer" id="footer-placeholder"></div>
 
   <script>
-      var div_main = document.getElementById('main_top');
-      div_main.innerHTML += getMainContent();
-
-      var item = ["Multithread", "Java", "polymorphisam", "object","big data","hadoop","linux","ssh","linux command","android"];
-
-      var ul = document.getElementById("myMenu");
-
-      for (var i = 0; i < item.length; i++) {
-        
-        var li = document.createElement("li");
-        var a = document.createElement("a");
-         //a.setAttribute("href", item[i]);
-         a.setAttribute("onclick", "selectSideMenu(this)");
-        a.appendChild(document.createTextNode(item[i]));
-        li.appendChild(a);
-        ul.appendChild(li);
-      }
+     
 
   </script>
 
@@ -100,5 +87,13 @@
   </script>
 
 
+
+<script src="js/loadData.js"></script>
+<script>
+
+// document.getElementById("idnavbar").style.backgroundColor =  "#354c79";
+// document.getElementById("myMenu").style.backgroundColor = "#354c79";
+// document.getElementById("sidebar").style.backgroundColor = "#354c79";
+</script>
   </body>
   </html>

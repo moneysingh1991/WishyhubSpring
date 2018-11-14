@@ -7,13 +7,18 @@ This is css file for all standard class name only
 
 
 .button {
-    background-color: #4CAF50;
+    background-color: var(--main-button-color);
     border: none;
     color: white;
     text-align: center;
     text-decoration: none;
-    display: block;
+    /*display: block;*/
     cursor: pointer;
+    border-radius: 15px ;
+    font-size: 12px;
+}
+.button:hover {
+    background: var(--main-button-hover-color);
 }
 
 .padding-top-small {
@@ -44,4 +49,28 @@ This is css file for all standard class name only
 	padding: 10px 20px;
 	font-size: 14px;
     margin: 3px 2px;
+}
+
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.width-half {
+    width:50%;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+.icon:hover{
+    cursor: pointer;
 }
