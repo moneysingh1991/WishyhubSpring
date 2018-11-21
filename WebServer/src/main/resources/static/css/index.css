@@ -27,26 +27,21 @@ body{
 #sidebar {
   width: 15%;
   float: left;
-  background-color: #f6f6f6;
-}
-
-/* Left column (menu) */
-#sidebarHeader{
- background-color: black;
- text-align: center;
-  color: white;
-  font-size: 25px;
-  font-style: bold;
+  min-height: 90vh;
+  text-align: left;
+  background-color: var(--main-theme-color);
   
 }
+
+
 
 /* Right column (page content) */
 #main {
   width: 80%;
   float: left;
-  padding-right: 20px;
+  /*padding: 20px;*/
   text-align: center;
-
+  min-height: 90vh;
 }
 
 #page_selection_title {
@@ -66,7 +61,7 @@ body{
    font-family: "Times New Roman";
     margin-left: 10px;
     margin-right: 60px;
-    padding-right: 50px;
+    /*padding-right: 50px;*/
     margin-bottom: 10px;
 }
 
@@ -75,35 +70,40 @@ body{
     float: left;
 }
 .main_item_title {
- padding-top: 20px;
+  padding-top: 20px;
   width: 100%;
-    overflow: hidden;
-    text-align: center; 
+  overflow: hidden;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
 }
-
-
 
 
 .main_item_content {
   
-  width: 100%;
-  padding-top: 20px;
-  height: 200px;
+  width: auto;
+  height: auto;
   overflow: hidden;
+  text-align: left;
+  font-size: 18px;
+  padding: 0px 60px 0px 60px;
+  white-space: pre;
 }
 
 .main_item_img_container {
   padding-top: 20px;
   max-height: 500px;
+  width: 100%;
   overflow: hidden;
 }
 .main_item_img {
   object-fit:cover;
-
+  max-height: inherit;
+  min-width: 400px;
 }
 
 .main_item_Button {
-  background-color: #4CAF50;
+  background-color: #d22424;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -111,7 +111,7 @@ body{
     text-decoration: none;
    
     font-size: 16px;
-    margin: 4px 2px;
+    margin: 2px 1px;
     cursor: pointer;
 }
 
@@ -120,11 +120,16 @@ body{
 .main_item_top1 {
   padding-top: 20px;
   overflow: hidden;
+
+} 
+
+.bottom-border {
+  border-bottom: 1px solid black;
 }
 
 .main_item_top2 {
   padding-top: 20px;
-  overflow: hidden;
+ /* overflow: hidden;*/
 }
 
 .main_item_div_left {
@@ -137,18 +142,20 @@ body{
 
 
 .footer {
-  background-color: #cc7a14;
+  background-color: var(--main-theme-color);
   text-align: center;
-  color: white;
+  color: var(--main-font-color);;
   min-height: 50px;
+  padding-top: 10px;
 }
 
 /* Style the search box */
 #mySearch {
-  width: 90%;
+  width: 100%;
   font-size: 18px;
-  padding: 10px;
+  /*padding: 10px;*/
   border:1px solid #ddd;
+   
 }
 
 /* Style the navigation menu inside the left column */
@@ -156,19 +163,23 @@ body{
   list-style-type: none;
   padding: 0;
   margin: 0;
+  max-height: 90vh;
+  font-size: 16px;
+  overflow: auto;
+  color: var(--main-font-color);
 }
 
 #myMenu li a {
-  background-color: #cc7a14;
+ /* background-color: #cc7a14;*/
   padding: 12px;
   text-decoration: none;
-  font-size: 18px;
-  color: white;
-  display: block
+  
+  
+  display: block;
 }
 
 #myMenu li a:hover {
-  background-color: #666;
+  background-color: var(--main-hover-color);
 }
 
 

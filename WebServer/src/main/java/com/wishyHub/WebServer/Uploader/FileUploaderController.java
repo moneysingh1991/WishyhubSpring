@@ -1,6 +1,6 @@
 package com.wishyHub.WebServer.Uploader;
 
-import com.wishyHub.WebServer.repository.uploadRepository;
+//import com.wishyHub.WebServer.repository.uploadRepository;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -28,7 +28,7 @@ public class FileUploaderController{
     
    @Autowired
    
-   public uploadRepository uploadRepo;
+//   public uploadRepository uploadRepo;
    
      //Save the uploaded file to this folder
     private static final String UPLOADED_FOLDER = "Upload/";
@@ -71,12 +71,12 @@ public class FileUploaderController{
     
     private String saveIntoDB(String filename, Integer size, String type, Integer userid) {
         
-        FileDetail file = new FileDetail();
+        FileDetail file = new FileDetail(userid,filename,size,type);
         file.setName(filename);
         file.setSize(size);
         file.setType(type);
         file.setUserid(userid);
-        uploadRepo.save(file);
+       // uploadRepo.save(file);
 
         return "success file store in DB";
     }
@@ -100,10 +100,8 @@ public class FileUploaderController{
         // use directory.mkdirs(); here instead.
               }
                 
-         
-
+        
              bytes = file.getBytes();
-            
             
             extension = file.getOriginalFilename();
             extension = extension.substring(extension.lastIndexOf(".")+1);

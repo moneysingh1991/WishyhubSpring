@@ -10,15 +10,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author maninderpal
  */
  @Entity
+ @Table(name="FileDetail")
 public class FileDetail {
  
-   
+  
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="fileid")
@@ -39,6 +41,12 @@ public class FileDetail {
     @Column(name="timestamp")
     private String timestamp;
 
+    public FileDetail(Integer userid, String name, Integer size, String type) {
+        this.userid = userid;
+        this.name = name;
+        this.size = size;
+        this.type = type;
+    }
     
     public Integer getFileid() {
         return fileid;
