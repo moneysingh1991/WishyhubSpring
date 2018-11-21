@@ -4,12 +4,13 @@ function createMainItem(image_link,item_desc, item_title, item_Author, item_Date
     stringRet =  '<div class="main_item">' 
     + '<div class="main_item_top1 bottom-border"> <div class= "left" ><div class= "left bold">Author :  </div> <div class="right" id="main_item_author"> '+item_Author+' </div></div> <div class="right"><div class= "left bold"> Published on :  </div> <div class="right" id="main_item_Date"> '+item_Date+'</div>  </div></div> '
     + '<div class="right main_item_top1"> <a   class="small"  onclick="editPopup(modal_popup)"> <img class="icon" src="img/edit.svg"></img> </a><a   class="small"  onclick="deletePost()"> <img class="icon" src="img/delete.svg"></img> </a></div>'
+  
     + '<div class="main_item_title left">  '+item_title+' </div>'
-   
+    + '<div class="main_item_top2"> <div class="main_item_div_left"> <Button class="button medium" id="main_item_Prev" onclick="goToPrev(modal_popup)"> Prev </Button> </div>  <div class="main_item_div_right"> <Button class="button medium" id="main_item_Prev" onclick="goToNext(modal_popup)"> Next </Button> </div></div> '
     +' <div class="main_item_img_container"><img class="main_item_img" src='+image_link+' alt="Italian Trulli"></div> ' 
     + '<div class="main_item_content"><p> ' + item_desc + '<p></div>'
    
-    + '<div class="main_item_top2"> <div class="main_item_div_left"> <Button class="button medium" id="main_item_Prev" onclick="goToPrev(modal_popup)"> Prev </Button> </div>  <div class="main_item_div_right"> <Button class="button medium" id="main_item_Prev" onclick="goToNext(modal_popup)"> Next </Button> </div></div> '
+   
  + '</div>';
     return stringRet;
 }

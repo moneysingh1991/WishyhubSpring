@@ -10,12 +10,11 @@ import com.wishyHub.WebServer.User.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-
 /**
  *
  * @author maninderpal
  */
-@Repository
-public interface UserRepository extends CrudRepository<User, Integer> {
-
-}
+//@Repository
+//public interface UserRepository extends CrudRepository<User, Integer> {
+//
+//}
