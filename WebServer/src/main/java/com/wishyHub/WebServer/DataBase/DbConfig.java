@@ -7,8 +7,6 @@ package com.wishyHub.WebServer.DataBase;
 
 import javax.sql.DataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.hibernate.cfg.Environment;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -35,6 +33,7 @@ public class DbConfig {
         dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/wishyhub");
         dataSource.setUsername("root");
         dataSource.setPassword("9872476129Mm$");
+      
  
         return (DataSource) dataSource;
     }

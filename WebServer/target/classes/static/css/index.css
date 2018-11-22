@@ -33,12 +33,11 @@ body{
   
 }
 
-
-
 /* Right column (page content) */
 #main {
   width: 80%;
-  float: left;
+  float :left;
+  
   /*padding: 20px;*/
   text-align: center;
   min-height: 90vh;
@@ -52,19 +51,15 @@ body{
 
 }
 
-
 /*for main div*/
 .main_item {
   
   width: 100%;
   height: auto;
    font-family: "Times New Roman";
-    margin-left: 10px;
-    margin-right: 60px;
-    /*padding-right: 50px;*/
-    margin-bottom: 10px;
+   padding-left: 10px;
+   padding-right: 10px;
 }
-
 
 #main_item_author, #main_item_date {
     float: left;
@@ -76,29 +71,31 @@ body{
   text-align: center;
   font-size: 25px;
   font-weight: bold;
+  display: inline-block; 
 }
 
 
 .main_item_content {
   
-  width: auto;
-  height: auto;
-  overflow: hidden;
+  width: 70%;
   text-align: left;
   font-size: 18px;
   padding: 0px 60px 0px 60px;
+  white-space: pre-wrap;
+  display: inline-block; 
 }
 
 .main_item_img_container {
   padding-top: 20px;
-  max-height: 500px;
+  display: inline-block; 
   width: 100%;
-  overflow: hidden;
 }
 .main_item_img {
-  object-fit:cover;
-  max-height: inherit;
-  min-width: 400px;
+/*  object-fit:cover;*/
+  
+     max-width: 100%;
+    max-height: 500px;
+ 
 }
 
 .main_item_Button {
@@ -108,18 +105,16 @@ body{
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-   
     font-size: 16px;
     margin: 2px 1px;
     cursor: pointer;
 }
 
-
-
 .main_item_top1 {
   padding-top: 20px;
   overflow: hidden;
-
+  width: 100%;
+  margin: 0px 10px 0px 0px;
 } 
 
 .bottom-border {
@@ -128,15 +123,10 @@ body{
 
 .main_item_top2 {
   padding-top: 20px;
-  overflow: hidden;
-}
-
-.main_item_div_left {
-  float: left;
-}
-
-.main_item_div_right {
-  float: right;
+ /* overflow: hidden;*/
+ width: 100%;
+ display: inline-block; 
+ 
 }
 
 
@@ -151,10 +141,11 @@ body{
 /* Style the search box */
 #mySearch {
   width: 100%;
-  font-size: 18px;
-  /*padding: 10px;*/
-  border:1px solid #ddd;
-   
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  
 }
 
 /* Style the navigation menu inside the left column */
@@ -179,6 +170,10 @@ body{
 
 #myMenu li a:hover {
   background-color: var(--main-hover-color);
+}
+
+.paragraph{
+    width: 100%;
 }
 
 

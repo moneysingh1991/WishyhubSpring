@@ -128,19 +128,34 @@
 
   function textareaKeydown() {
 
+       var input = document.getElementById("textAreaid");
+       var v = input.value;
+       var s = input.selectionStart;
+       var e = input.selectionEnd;
 
   // handling tab key press event
       if (event.keyCode===9) {
-       var v=this.value;
-       s=this.selectionStart;
-       e=this.selectionEnd;
 
-       this.value=v.substring(0, s)+'\t'+v.substring(e);
+       v = v.substring(0, s)+'\t'+v.substring(e);
 
-       this.selectionStart=this.selectionEnd=s+1;
+       helperTextAreaKeydown(input, v, s, event);
 
-       return false;
+      } 
+// handling "Enter" key press event
+      else if (event.keyCode===13) {
+          v = v.substring(0, s)+'\n'+v.substring(e);
+  helperTextAreaKeydown(input, v, s, event);
+
       }
+
+  }
+
+// function to handle end of pree key event on text area
+  function helperTextAreaKeydown(input, v, s, event) {
+      input.value = v;
+       input.selectionStart = s + 1;
+       input.selectionEnd = s+1;
+       event.preventDefault();
   }
 
   // Save item on click on save

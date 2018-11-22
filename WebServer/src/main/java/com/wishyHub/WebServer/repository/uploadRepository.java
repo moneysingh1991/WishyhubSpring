@@ -6,7 +6,6 @@
 package com.wishyHub.WebServer.repository;
 
 import com.wishyHub.WebServer.DataBase.DbConfig;
-import org.springframework.data.repository.CrudRepository;
 import com.wishyHub.WebServer.Uploader.FileDetail;
 
 /**
@@ -15,8 +14,9 @@ import com.wishyHub.WebServer.Uploader.FileDetail;
  */
 public class uploadRepository  {
     public void save(FileDetail fileDetail) {
-         String sql = "INSERT INTO fileDetail (articleId, title, category) values (?, ?, ?)";
-          DbConfig.jdbcTemplate().update(sql, fileDetail.getName(), fileDetail.getSize() ,fileDetail.getType());
+         String sql = "INSERT INTO fileDetail (name, size, type, userid) values (?, ?, ?, ?)";
+         System.out.println(sql);
+          DbConfig.jdbcTemplate().update(sql, fileDetail.getName(), fileDetail.getSize() ,fileDetail.getType(), fileDetail.getUserid());
           
     }
     

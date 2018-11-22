@@ -1,6 +1,7 @@
 package com.wishyHub.WebServer.Uploader;
 
 //import com.wishyHub.WebServer.repository.uploadRepository;
+import com.wishyHub.WebServer.repository.uploadRepository;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,7 +12,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.jboss.logging.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -26,12 +26,10 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class FileUploaderController{
     
-   @Autowired
-   
-//   public uploadRepository uploadRepo;
+  
    
      //Save the uploaded file to this folder
-    private static final String UPLOADED_FOLDER = "Upload/";
+    private static final String UPLOADED_FOLDER = "../Upload/";
   // 3.1.2 Multiple file upload
     @PostMapping("/upload")
     public ResponseEntity<?> uploadFileMulti(
@@ -40,6 +38,7 @@ public class FileUploaderController{
 
        
             int ret = 0  ;
+            int userid = 0;
            
         // Get file name
         String uploadedFileName = Arrays.stream(uploadfiles).map(x -> x.getOriginalFilename())
@@ -51,7 +50,7 @@ public class FileUploaderController{
 
         try {
 
-             ret = saveUploadedFiles(Arrays.asList(uploadfiles));
+             ret = saveUploadedFiles(Arrays.asList(uploadfiles),userid);
             
 
         } catch (Exception e) {
@@ -76,11 +75,11 @@ public class FileUploaderController{
         file.setSize(size);
         file.setType(type);
         file.setUserid(userid);
-       // uploadRepo.save(file);
+        new uploadRepository().save(file);
 
         return "success file store in DB";
     }
-    private int saveUploadedFiles(List<MultipartFile> files) throws IOException {
+    private int saveUploadedFiles(List<MultipartFile> files, int userid) throws IOException {
        String extension = "extra";
        String dir= "";
        byte[] bytes = null;
@@ -100,7 +99,6 @@ public class FileUploaderController{
         // use directory.mkdirs(); here instead.
               }
                 
-        
              bytes = file.getBytes();
             
             extension = file.getOriginalFilename();
@@ -116,11 +114,10 @@ public class FileUploaderController{
             
             Path path = Paths.get(dir+  file.getOriginalFilename());
             
-            
             Files.write(path, bytes);
-            
-            //saveIntoDB(file.getOriginalFilename(), bytes.length,  extension, 0);
-
+          
+            //SAVE TO DATABASE
+            saveIntoDB(file.getOriginalFilename(),bytes.length/1024,extension,userid);
         }
         return bytes.length;  
     }

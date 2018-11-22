@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-
+console.log("sfvdfv");
 $("textarea").on('keydown', function(ev) {
  
     var keyCode = ev.keyCode || ev.which;
