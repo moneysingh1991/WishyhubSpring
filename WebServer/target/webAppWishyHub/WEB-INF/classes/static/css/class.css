@@ -1,0 +1,80 @@
+/*
+Author: Maninderpal Singh
+Created Date: 10/6/2018
+
+This is css file for all standard class name only 
+*/
+
+
+.button {
+    background-color: var(--main-button-color);
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    /*display: block;*/
+    cursor: pointer;
+    border-radius: 15px ;
+    font-size: 12px;
+}
+.button:hover {
+    background: var(--main-button-hover-color);
+}
+
+.padding-top-small {
+	padding-top: 20px;
+}
+
+.padding-top-large {
+	padding-top: 50px;
+}
+
+.fullwidth {
+	width: 100%;
+}
+
+.small {
+ padding: 5px 10px;
+	font-size: 12px;
+    margin: 2px 1px;
+}
+
+.large {
+	padding: 15px 32px;
+	font-size: 16px;
+    margin: 4px 2px;
+}
+
+.medium {
+	padding: 10px 20px;
+	font-size: 14px;
+    margin: 3px 2px;
+}
+
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.width-half {
+    width:50%;
+}
+
+.width-70 {
+    width:60%;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+.icon:hover{
+    cursor: pointer;
+}

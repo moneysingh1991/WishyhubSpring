@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<whattostat xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <armedtime>884</armedtime>
+  <distTraveledmeters>371.20183929177352</distTraveledmeters>
+  <gpslocktime>37458</gpslocktime>
+  <timeInAir>342</timeInAir>
+  <connects>33</connects>
+  <connectedtime>42113</connectedtime>
+  <maxalt>40.689998626708984</maxalt>
+  <minalt>-36.220001220703125</minalt>
+  <mahused>23136.072866730159</mahused>
+  <lastconnect>2017-03-11T01:06:50.4914674-08:00</lastconnect>
+  <lastdisconnect>2017-03-11T01:05:55.1397481-08:00</lastdisconnect>
+  <maxspeed>1.5199999809265137</maxspeed>
+  <appstarts>10</appstarts>
+  <avgspeed>0.14098856505510618</avgspeed>
+</whattostat>

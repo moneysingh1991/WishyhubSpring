@@ -3,13 +3,14 @@
 function createMainItem(image_link,item_desc, item_title, item_Author, item_Date) {
     stringRet =  '<div class="main_item">' 
     + '<div class="main_item_top1 bottom-border"> <div class= "left" ><div class= "left bold">Author :  </div> <div class="right" id="main_item_author"> '+item_Author+' </div></div> <div class="right"><div class= "left bold"> Published on :  </div> <div class="right" id="main_item_Date"> '+item_Date+'</div>  </div></div> '
-    + '<div class="right main_item_top1"> <a   class="small"  onclick="editPopup(modal_popup)"> <img class="icon" src="img/edit.svg"></img> </a><a   class="small"  onclick="deletePost()"> <img class="icon" src="img/delete.svg"></img> </a></div>'
+    + '<div class="main_item_top1"> <div class="right" ><a   class="small"  onclick="editPopup(modal_popup)"> <img class="icon" src="img/edit.svg"></img> </a><a   class="small"  onclick="deletePost()"> <img class="icon" src="img/delete.svg"></img> </a></div></div>'
+  
     + '<div class="main_item_title left">  '+item_title+' </div>'
-   
+    + '<div class="main_item_top2"> <div class="left"> <Button class="button medium" id="main_item_Prev" onclick="goToPrev(modal_popup)"> Prev </Button> </div>  <div class="right"> <Button class="button medium" id="main_item_Prev" onclick="goToNext(modal_popup)"> Next </Button> </div></div> '
     +' <div class="main_item_img_container"><img class="main_item_img" src='+image_link+' alt="Italian Trulli"></div> ' 
-    + '<div class="main_item_content"><p> ' + item_desc + '<p></div>'
+    + '<div class="main_item_content"><p class="paragraph"> ' + item_desc + '</p></div>'
    
-    + '<div class="main_item_top2"> <div class="main_item_div_left"> <Button class="button medium" id="main_item_Prev" onclick="goToPrev(modal_popup)"> Prev </Button> </div>  <div class="main_item_div_right"> <Button class="button medium" id="main_item_Prev" onclick="goToNext(modal_popup)"> Next </Button> </div></div> '
+   
  + '</div>';
     return stringRet;
 }
@@ -46,14 +47,13 @@ return navigation content
 */
 
 function getNavBarContent() {
-    var navbar = '<div class="left width-half"><a href="/home">Home</a>'+
+    var navbar = '<div class="left width-70"><a href="/">Home</a>'+
     ' <div class="search-container right"><input id="id_main_search" onkeyup="searchFunction()" type="text" placeholder="Search.." name="search">'+
-      '<button class ="button medium" type="submit">Search</button></div></div>'+
+      '<button type="submit" ><img src="img/search.svg"></button></div></div>'+
      '<div class="nav-menu right">'+
-      ' <div class="dropdown"> Services'+
-    '<div class="dropdown-content">'+
-      '<a onclick="uploadService()">Upload</a>'+
-      '<a onclick="newPostService()">New Post</a>'+
+      ' <div onclick="showService(1)" class="dropdown"> Services'+
+    '<div id="addService" class="dropdown-content">'+
+     
     
     '</div>' +
     '</div>'+
@@ -81,7 +81,6 @@ function getloginPopupContent() {
 // this is create  or edit item content
 function getEditPopupContent(valueArr) {
 
-
 	edit = true;
 
 // if valueArr have all key value as empty string theat mean its new posting 
@@ -92,10 +91,10 @@ function getEditPopupContent(valueArr) {
 	
 
   loginPop =  '<div> <label for="aname"><b>Author</b></label>'
-   + ' <input type="text" value= " '+ valueArr["author"]+'" placeholder="Enter Author Name" name="author_input" required>'
-    + '<label for="title"><b>Title</b></label> <input type="text" value= " '+ valueArr["title"]+'" placeholder="Enter title" name="title_input" required>'
+   + ' <input class="popup_input" type="text" value= " '+ valueArr["author"]+'" placeholder="Enter Author Name" name="author_input" required>'
+    + '<label for="title"><b>Title</b></label> <input class="popup_input" type="text" value= " '+ valueArr["title"]+'" placeholder="Enter title" name="title_input" required>'
    
-    + '<label for="title"><b>Link</b></label> <input type="text" value= " '+ valueArr["link"]+'" placeholder="Enter Link" name="link_input" required>'
+    + '<label for="title"><b>Link</b></label> <input class="popup_input" type="text" value= " '+ valueArr["link"]+'" placeholder="Enter Link" name="link_input" required>'
     + getFileUploader()
     + '<div class = "padding-top-small"><textarea  onkeydown="textareaKeydown()" id = "textAreaid" class= "textArea" placeholder="Enter Code" name="textarea_input">  '+ valueArr["detail"]+'</textarea></div>'
     + '<div class = "padding-top-large"><button class="button medium fullwidth" onclick="itemSave('+ edit+')" type="submit">Save</button></div>'
@@ -113,4 +112,20 @@ can be added to any div
 function getFileUploader() {
     return '<div class = "padding-top-small"><label><b>Upload Image</b></label> <input type="file" multiple="" placeholder="Enter title" name="UploadFiles_input[]" /> <button onclick="upload()" type="submit">Upload</button></div>'
     +'<div class = "padding-top-small" id="file-list-display"></div>';
+}
+
+/*
+Create Browser to get all files
+*/
+function getBrowse() {
+   loadFileLinks();
+  var image_link;
+  var div = '<div class="div_grid_view" >';
+  var img = '';
+  for(var i = 0; i < gloabl_file_browse_array.length; i++) {
+    img += '<div class="item_browse"><img class="browse_item_img" src='+gloabl_file_browse_array[i]+'></div>';
+  }
+  div += img + '</div>';
+  return div;
+
 }
