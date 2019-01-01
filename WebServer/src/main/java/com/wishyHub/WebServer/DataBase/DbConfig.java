@@ -34,7 +34,6 @@ public class DbConfig {
         dataSource.setUsername("root");
         dataSource.setPassword("9872476129Mm$");
       
- 
         return (DataSource) dataSource;
     }
     

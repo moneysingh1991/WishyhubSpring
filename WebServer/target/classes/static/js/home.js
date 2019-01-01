@@ -1,10 +1,15 @@
-  var global_item_index_Count = 0;
-  var gloabl_array_item = [];
-  var global_site_domain = "http://localhost:8080/webAppWishyHub";
-  global_site_domain = "http://localhost:9080"
-  //global_site_domain = "http://192.168.1.5:9080"
 
-  var global_total_uploaded_count = 1;
+  //click on window event handler
+// $(window).click(function(e) {
+//   if(e.target.className != "dropdown") {
+//     showService(0);
+//   } else {
+//       if(document.getElementById('addService').style.display === "block") {
+
+//       }
+//   }
+   
+// });
 
   $(document).ready(function(){
       $("button").change(function(){
@@ -50,8 +55,8 @@
       ul = document.getElementById("myMenu");
       li = ul.getElementsByTagName("li");
       for (i = 0; i < li.length; i++) {
-          a = li[i].getElementsByTagName("a")[0];
-          if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          
+          if (li[i].getElementsByTagName("a")[0].innerHTML.toUpperCase().indexOf(filter) == 0) {
               li[i].style.display = "";
           } else {
               li[i].style.display = "none";
@@ -65,7 +70,6 @@
       return '<p align="center">Maninderpal Singh </p>';
 
   }
-
 
   // get current date
   function getCurrentDate() {
@@ -92,14 +96,6 @@
       return stringRet ;
   }
 
-
-  // pop open based on param
-  // if param = "edit" then edit popup open
-  function openPopup(id) {
-
-          var modal = document.getElementById(id.id);
-          modal.style.display = "block";
-  }
 
 
   /*
@@ -160,10 +156,10 @@
 
   // Save item on click on save
   function itemSave(edit) {
-    
-    var author = $("[name=author_input]").val();
-    var title = $("[name=title_input]").val();
-    var link = $("[name=link_input]").val();
+    var updateflag = false;
+    var author = $("[name=author_input]").val().trim();
+    var title = $("[name=title_input]").val().trim();
+    var link = $("[name=link_input]").val().trim();
     //var image =  $("[name=UploadImage_input[]]")[0].files;
 
     var uploadImage = document.getElementsByName("UploadImage_input[]");
@@ -172,41 +168,68 @@
       var file = document.getElementsByName("UploadImage_input[]")[0].files;
     }
     
-    var textArea =  $("[name=textarea_input]").val();
+    var textArea =  $("[name=textarea_input]").val().trim();
 
     if( author == ""  || title == "" || textArea.length < 2) {
       alert("Enter all field mendatory filed");
       return;
-  }
+    }
 
-    var data = {author: author, title:title, link:link, image:file, textArea:textArea};
+    var data = null;
 
+// save clicked from edit box
     if(edit) {
-      gloabl_array_item[global_item_index_Count] = {link:link,
-                detail:textArea,
-                title:title,
-                author:author, 
-                date:getCurrentDate()
-      };
-    } else {
+          if (author != gloabl_array_item[global_item_index_Count].author || title != gloabl_array_item[global_item_index_Count].title || 
+            link != gloabl_array_item[global_item_index_Count].link || textArea != gloabl_array_item[global_item_index_Count].detail ) {
+
+            // something got changed in post 
+          
+             gloabl_array_item[global_item_index_Count] = {
+                          id:gloabl_array_item[global_item_index_Count].id, 
+                          link:link,
+                          detail:textArea,
+                          title:title,
+                          author:author, 
+                          date:getCurrentDate()
+                };
+                  data = {edit:edit,
+                  id:gloabl_array_item[global_item_index_Count].id, 
+                  author: author, 
+                  title:title, 
+                  link:link, 
+                  image:file,
+                  textArea:textArea};
+          } else {
+              alert("Save Without change");
+          }
+    } 
+// save clicked from enew post box
+    else {
        gloabl_array_item.push({link:link,
                 detail:textArea,
                 title:title,
                 author:author, 
                 date:getCurrentDate()
       });
+
+       data = {edit:edit,id:-1, author: author, title:title, link:link, image:file, textArea:textArea};
        global_item_index_Count = gloabl_array_item.length -1;
+
+       // to send data for new post
+       updateflag = true;
     }
 
-    
+  
+if(updateflag) {
 
-    var localUrl = global_site_domain + "/post";
 
-    var reposnse = ajaxRequest("post",localUrl,data, false);
+    var response = ajaxRequest("post",global_site_domain + "/post/save",data, false);
 
-    if(reposnse.error == false) {
+    if(response.data.error == "success") {
         setMainContentInList();
-      
+      if(response.data.data && !isNaN(response.data.data)) {
+       gloabl_array_item[global_item_index_Count].id = Number(response.data.data);
+      }
 
     } else {
       console.log("Need to handle bad ajax request error");
@@ -215,7 +238,7 @@
           setMainContentInList();
       } 
     }
-
+}
     //close popup with id = modal_pop
       close_popup({id:"modal_popup"});
   }
@@ -286,10 +309,12 @@ This helper function will save update main item content
       table.appendChild(table_tr);
       
        fileListDisplay.appendChild(table);
+     
       for (var i = 0; i < files.length; i++) {
       	sendFile(files[i],table);
-         
       }
+      document.getElementsByName("UploadFiles_input[]")[0].value = null
+      global_total_uploaded_count= 1;
      
   }
 
@@ -336,6 +361,18 @@ This helper function will save update main item content
     });
     
     }
+
+      // pop open based on param
+  // if param = "edit" then edit popup open
+  function openPopup(id) {
+   
+          var modal = document.getElementById(id.id);
+          modal.style.display = "block";
+    // disable window scrolling
+          document.body.style.overflow = "hidden";
+         
+  }
+
   // pop close based on param
   // if param = "edit" then edit popup open
   function close_popup(id) {
@@ -346,36 +383,11 @@ This helper function will save update main item content
            } else {
                console.log("close_pop() : id not exist");
            }
+// enable window scrolling
+           document.body.style.overflow = "visible";
              
   }
 
-
-
-
-  function uploadService() {
-      if(!document.getElementById("upload_modal")) {
-          createModal("upload_modal", "upload_modal_container", "upload_modal_title");
-          
-      } 
-     
-     document.getElementById('upload_modal_title').innerHTML = 'Upload';
-     document.getElementById('upload_modal_container').innerHTML = getFileUploader();
-      openPopup({id:"upload_modal"});
-  }
-
-  function newPostService() {
-    document.getElementById('modal-title').innerHTML = 'New Post';
-
-       var valueArr = {author:"",
-       title:"",
-       link:"",
-       upload:"",
-       detail:""
-      }
-       document.getElementById('modal-content-main').innerHTML = getEditPopupContent(valueArr);
-
-       openPopup(modal_popup);
-  }
 
 /*
 Method for delete post
@@ -383,6 +395,8 @@ Method for delete post
 function deletePost() {
   if(confirm("Are you Sure, You want to delete Post") ) {
     alert("Post deleted successfully");
+    var data = {id: gloabl_array_item[global_item_index_Count].id};
+    var response = ajaxRequest("DELETE",global_site_domain + "/post/delete",data, false);
     gloabl_array_item.splice(global_item_index_Count,1);
 
     if(global_item_index_Count+1 <  gloabl_array_item.length ) {
@@ -434,6 +448,17 @@ function deletePost() {
     }
   }
 
+
+// Show Service dropdown on clcik
+ function showService(args) {
+ 
+       if(document.getElementById('addService').style.display === "block") {
+        document.getElementById('addService').style.display = "none";
+      } else {
+        document.getElementById('addService').style.display = "block";
+      }
+ 
+  }
 
 
 

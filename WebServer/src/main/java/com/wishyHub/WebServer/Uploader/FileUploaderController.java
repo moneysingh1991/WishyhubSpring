@@ -10,8 +10,6 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.jboss.logging.MDC;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -25,8 +23,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class FileUploaderController{
-    
-  
    
      //Save the uploaded file to this folder
     private static final String UPLOADED_FOLDER = "../Upload/";
@@ -66,7 +62,7 @@ public class FileUploaderController{
                 + uploadedFileName, HttpStatus.OK);
 
     }
-//save file
+//save file info into db
     
     private String saveIntoDB(String filename, Integer size, String type, Integer userid) {
         
@@ -75,10 +71,12 @@ public class FileUploaderController{
         file.setSize(size);
         file.setType(type);
         file.setUserid(userid);
-        new uploadRepository().save(file);
+        new uploadRepository().insert(file);
 
         return "success file store in DB";
     }
+    
+    // create files in real location
     private int saveUploadedFiles(List<MultipartFile> files, int userid) throws IOException {
        String extension = "extra";
        String dir= "";
@@ -91,10 +89,7 @@ public class FileUploaderController{
             
             File directory = new File( UPLOADED_FOLDER);
                 if (! directory.exists()){
-                  if(directory.mkdir()) {
-                     // System.out.println("############# success create directory");
-                   
-                  } 
+                  directory.mkdir();
         // If you require it to make the entire directory path including parents,
         // use directory.mkdirs(); here instead.
               }
@@ -106,6 +101,7 @@ public class FileUploaderController{
                    dir = UPLOADED_FOLDER + extension+"/";
 
             directory = new File( dir);
+            
                 if (! directory.exists()){
                   directory.mkdir();
         // If you require it to make the entire directory path including parents,

@@ -4,8 +4,6 @@
 Top bar style
 */
 
-
-
 .topnav {
   overflow: hidden;
  background-color: var(--main-theme-color);
@@ -38,24 +36,41 @@ Top bar style
 }
 
 .topnav input[type=text] {
-  padding: 6px;
-  margin-top: 8px;
-  margin-left: 16px;
+  
+
   font-size: 17px;
   border: none;
-  width:300px;
+  padding: 9px;
+   vertical-align: middle;
+
+   width: 500px;
 }
 
-.topnav .search-container button {
+.topnav  button {
  
   /*padding: 6px 10px;*/
  
-  margin-left: 10px;
-  border: none;
+  padding: 6px;
+  float :right; 
   cursor: pointer;
-  align-content: center;
+  background-color: white;
+  vertical-align: middle;
+ border: none;
 }
 
+.topnav .search-container  {
+ 
+ vertical-align: middle;
+ display: inline-flex;
+ padding: 3px;
+}
+
+.search-container img  {
+ 
+  width: 20px;
+  height: 20px;
+  
+}
 .nav-menu a:hover {
   
 }
@@ -75,11 +90,14 @@ Top bar style end
   text-decoration: none;
   background: var(--main-theme-color);
   cursor: pointer;
+ 
 }
+
 
 
 .dropdown-content {
     display: none;
+    margin-top: 15px;
     position: absolute;
     color: white;
   background-color: inherit;
@@ -95,14 +113,3 @@ Top bar style end
     text-align: left;
 }
 
-.dropdown-content a:hover {
-   /* background-color: #7ea0e0;*/
-     color: white;
-     /*text-color:white;*/
-}
-
-.dropdown:hover .dropdown-content {
-  
-    display: block;
-
-}

@@ -55,21 +55,7 @@ public class UserController {
 		return "Saved";
 	}
 
-        @GetMapping(path="/file") // Map ONLY GET Requests
-	public @ResponseBody String addFile (@RequestParam String name
-			, @RequestParam Integer size, @RequestParam String type, @RequestParam Integer userid) {
-		// @ResponseBody means the returned String is the response, not a view name
-		// @RequestParam means it is a parameter from the GET or POST request
-
-	FileDetail file = new FileDetail(userid,name,size,type);
-//        file.setName(name);
-//        file.setSize(size);
-//        file.setType(type);
-//        file.setUserid(userid);
-//        uploadRepo.save(file);
-
-        return "success file store in DB";
-	}
+    
 //	@GetMapping(path="/all")
 //	public @ResponseBody Iterable<User> getAllUsers() {
 //		// This returns a JSON or XML with the users

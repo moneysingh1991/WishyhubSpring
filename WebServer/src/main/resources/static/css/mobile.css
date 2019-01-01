@@ -5,9 +5,7 @@ Created Date: 10/6/2018
 This is css file for mobile related or when screen size decrease
 */
 @media screen and (max-width: 800px) {
-  .topnav .search-container {
-    float: none;
-  }
+  
   .topnav  {
   float: none;  
   
@@ -29,19 +27,18 @@ This is css file for mobile related or when screen size decrease
     width: 100%;
     padding : 0px 0px 0px 0px;
   }
-  #main_top {
-   
-    padding : 0px 20px 0px 20px;
+ 
+  
+.topnav .search-container {
+    float: none;
+    display: inline-flex;
+    width: 100%;
   }
   
-  .search-container {
-      float: left;
-      width: 100%;
-  }
-  #id_main_search {
-      width: 100%;
-  }
-  
+.search-container input {
+  width: 100%;
+}
+ 
   .nav-menu {
    float: none;   
    width:100%;
@@ -52,6 +49,18 @@ This is css file for mobile related or when screen size decrease
    text-align: left;
    width: auto;
   }
-  
- 
+
+  .div_grid_view {
+  grid-template-columns: auto auto auto;
 }
+  
+   #main_top {
+   
+    padding : 0px 10px 0px 0px;
+  }
+
+.main_item_top1 {
+  display: block;
+}
+}
+ 
