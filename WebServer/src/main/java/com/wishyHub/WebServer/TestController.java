@@ -5,6 +5,7 @@
  */
 package com.wishyHub.WebServer;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -22,8 +23,12 @@ public class TestController {
  
     @GetMapping("/hello")
     public Collection<String> sayHello() {
-        return IntStream.range(0, 10)
-          .mapToObj(i -> "Hello number " + i)
+        
+         File directory = new File( "../"+System.getProperty("user.dir")+"/newCreateUpload");
+              
+                  directory.mkdir();
+        return IntStream.range(0, 2)
+          .mapToObj(i -> "../"+System.getProperty("user.dir")+"/newCreateUpload" + i)
           .collect(Collectors.toList());
     }
 }

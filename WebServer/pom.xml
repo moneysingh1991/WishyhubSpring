@@ -6,8 +6,8 @@
 	<groupId>com.wishyHub</groupId>
 	<artifactId>WebServer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-<!--	<packaging>war</packaging>-->
-<packaging>jar</packaging>
+	<packaging>war</packaging>
+<!--<packaging>jar</packaging>-->
 
 	<name>WebServer</name>
 	<description>Demo project for Spring Boot</description>
@@ -64,10 +64,16 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			
 		</dependency>
+<!--                to deploy on tomcat-->
+                <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+                        <scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
-            <finalName>webAppWishyHub</finalName>
+            <finalName>wishyhub</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
