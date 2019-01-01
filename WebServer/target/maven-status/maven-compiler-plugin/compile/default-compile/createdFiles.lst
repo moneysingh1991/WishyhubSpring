@@ -5,6 +5,11 @@ com\wishyHub\WebServer\Uploader\FileDetailtemp.class
 com\wishyHub\WebServer\DataBase\DbConfig.class
 com\wishyHub\WebServer\User\User.class
 com\wishyHub\WebServer\Uploader\FileDetail.class
+com\wishyHub\WebServer\Post\Post.class
+com\wishyHub\WebServer\Post\PostController.class
 com\wishyHub\WebServer\MainController\MainController.class
-com\wishyHub\WebServer\TomcatController.class
+com\wishyHub\WebServer\repository\PostRepository$1.class
+com\wishyHub\WebServer\repository\PostRepository.class
 com\wishyHub\WebServer\WebServerApplication.class
+com\wishyHub\WebServer\TestController.class
+com\wishyHub\WebServer\Uploader\Filedownloader.class
