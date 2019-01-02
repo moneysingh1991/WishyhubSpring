@@ -6,7 +6,7 @@
   // set devlopment to false before commit
   var development = false;
   
-  var global_home_sub_path = "wishyhub";
+  var global_home_sub_path = "";
   var global_site_domain = "http://localhost:8080/"+global_home_sub_path;
 
 
