@@ -4,7 +4,7 @@
   var gloabl_file_browse_array = [];
   
   // set devlopment to false before commit
-  var development = true;
+  var development = false;
   
   var global_home_sub_path = "wishyhub";
   var global_site_domain = "http://localhost:8080/"+global_home_sub_path;
