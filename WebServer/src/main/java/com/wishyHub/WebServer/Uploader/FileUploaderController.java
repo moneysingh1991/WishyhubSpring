@@ -26,7 +26,7 @@ public class FileUploaderController{
    
      //Save the uploaded file to this folder
    // private static final String UPLOADED_FOLDER = "../../Upload/";
-    private static final String UPLOADED_FOLDER = ""+System.getProperty("user.dir")+"/Upload/";
+    protected static final String UPLOADED_FOLDER = System.getProperty("user.dir")+"/Upload/";
   // 3.1.2 Multiple file upload
     @PostMapping("/upload")
     public ResponseEntity<?> uploadFileMulti(

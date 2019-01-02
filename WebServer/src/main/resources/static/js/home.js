@@ -84,6 +84,10 @@
   // this function will get main content
   function getMainContent(index) {
 
+    if(gloabl_array_item.length < 1) {
+        console.log('Data load error from getMainContent()');
+        return '';
+    }
     if(!index || index < 0 || index > gloabl_array_item.length -1) {
       index = 0;
     } 

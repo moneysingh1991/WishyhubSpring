@@ -64,7 +64,7 @@ function loadFileLinks() {
   
               }
           }, error: function(result) {
-
+                console.log('Error during fetching main data loadFileLinks() in loadData')
           }
 
         });
@@ -92,7 +92,7 @@ function loadPostData() {
   
               }
           }, error: function(result) {
-
+                console.log('Error during fetching main data loadPostData() in loadData')
           }
 
         });

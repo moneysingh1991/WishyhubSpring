@@ -47,7 +47,7 @@ return navigation content
 */
 
 function getNavBarContent() {
-    var navbar = '<div class="left width-70"><a href="/">Home</a>'+
+    var navbar = '<div class="left width-70"><a href="'+ global_home_sub_path +' ">Home</a>'+
     ' <div class="search-container right"><input id="id_main_search" onkeyup="searchFunction()" type="text" placeholder="Search.." name="search">'+
       '<button type="submit" ><img src="img/search.svg"></button></div></div>'+
      '<div class="nav-menu right">'+

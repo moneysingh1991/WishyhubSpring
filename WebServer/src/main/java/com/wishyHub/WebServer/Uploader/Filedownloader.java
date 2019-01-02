@@ -81,7 +81,7 @@ private byte[] getActualFile(int fileid) throws FileNotFoundException, IOExcepti
         map = new uploadRepository().getResult(fileid);
         // create file from path
       //TODO fix upload folder name 
-        initialFile = new File(System.getProperty("user.dir")+"/Upload/"+map.get("type")+"/"+ map.get("name"));
+        initialFile = new File(FileUploaderController.UPLOADED_FOLDER+map.get("type")+"/"+ map.get("name"));
         targetStream = new FileInputStream(initialFile);
 //        byte[] bytes = StreamUtils.copyToByteArray(targetStream);
 return StreamUtils.copyToByteArray(targetStream);
