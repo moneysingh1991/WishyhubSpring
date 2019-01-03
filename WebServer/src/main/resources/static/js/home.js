@@ -203,6 +203,7 @@
                   link:link, 
                   image:file,
                   textArea:textArea};
+             updateflag = true;
           } else {
               alert("Save Without change");
           }
