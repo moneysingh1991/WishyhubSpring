@@ -7,8 +7,9 @@
   var development = false;
   
   var global_home_sub_path = "wishyhub";
-  var global_site_domain = "http://localhost:8080/"+global_home_sub_path;
-global_site_domain = "http://54.67.42.199:8080/"+global_home_sub_path;
+  // var global_site_domain = "http://localhost:8080/"+global_home_sub_path;
+  //global_site_domain = "http://54.67.42.199:8080/"+global_home_sub_path;
+  var global_site_domain = window.location.href;
 
 if(development == true) {
       global_home_sub_path = "/";
