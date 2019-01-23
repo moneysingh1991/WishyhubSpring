@@ -29,7 +29,7 @@ public class PostRepository {
      * @param post 
      */
      public int insert(Post post) {
-         String INSERT_SQL = "INSERT INTO POST (author, title, text, image) values (?, ?, ?, ?)";
+         String INSERT_SQL = "INSERT INTO post (author, title, text, image) values (?, ?, ?, ?)";
        //  System.out.println(sql);
        //   DbConfig.jdbcTemplate().update(sql,post.author, post.title, post.longText ,post.image);
           
@@ -61,7 +61,7 @@ public class PostRepository {
 
      
      public void update(Post post) {
-         String sql = "UPDATE POST ";
+         String sql = "UPDATE post ";
          String set = "";
          String where = " WHERE postid=" + quote(Integer.toString(post.id));
          
