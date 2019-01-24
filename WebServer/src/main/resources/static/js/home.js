@@ -401,7 +401,7 @@ function deletePost() {
   if(confirm("Are you Sure, You want to delete Post") ) {
     alert("Post deleted successfully");
     var data = {id: gloabl_array_item[global_item_index_Count].id};
-    var response = ajaxRequest("DELETE",global_site_domain + "/post/delete",data, false);
+    var response = ajaxRequest("POST",global_site_domain + "/post/delete",data, false);
     gloabl_array_item.splice(global_item_index_Count,1);
 
     if(global_item_index_Count+1 <  gloabl_array_item.length ) {
