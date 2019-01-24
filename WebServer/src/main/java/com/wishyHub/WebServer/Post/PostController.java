@@ -100,7 +100,7 @@ public class PostController {
        return "success save post";
     }
     
-    @DeleteMapping("/delete")
+    @PostMapping("/delete")
     public HashMap<String, String> deletePost(@RequestParam("id") int id ) {
        // model.addAttribute("name", name);
        HashMap<String,String> map = new HashMap<String,String>();
