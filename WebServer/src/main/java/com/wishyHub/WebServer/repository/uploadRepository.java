@@ -19,23 +19,23 @@ import org.springframework.dao.EmptyResultDataAccessException;
  */
 public class uploadRepository  {
     public void insert(FileDetail fileDetail) {
-         String sql = "INSERT INTO fileDetail (name, size, type, userid) values (?, ?, ?, ?)";
+         String sql = "INSERT INTO filedetail (name, size, type, userid) values (?, ?, ?, ?)";
           DbConfig.jdbcTemplate().update(sql, fileDetail.getName(), fileDetail.getSize() ,fileDetail.getType(), fileDetail.getUserid());
     }
     
    public Map<String, Object> getResult(int fileid) throws EmptyResultDataAccessException {
        Map<String, Object> result = null;
        if(fileid > -1) {
-        String sql = "select * from fileDetail where fileid = " + fileid;
+        String sql = "select * from filedetail where fileid = " + fileid;
          result = DbConfig.jdbcTemplate().queryForMap(sql);
          
          System.out.println("-------------------------"+result);
          
        } else {
-            String sql = "select TOP 2* from fileDetail";
+            String sql = "select TOP 2* from filedetail";
         // result = DbConfig.jdbcTemplate().queryForMap(sql);
          result = (Map<String, Object>) DbConfig.jdbcTemplate().queryForList(sql);
-         System.out.println("-------Select * from fileDetail----------- : ");
+         System.out.println("-------Select * from filedetail----------- : ");
          System.out.println(result);
        }
        if(result instanceof Map) {
