@@ -105,16 +105,21 @@ public class PostController {
        // model.addAttribute("name", name);
        HashMap<String,String> map = new HashMap<String,String>();
        map.put("error","success");
-       String dbResponse = "dele success";
+       String dbResponse = "delete success";
        
        // if its new post
-//       if(!edit) {
-//          dbResponse =  saveIntoDB(-1, author,title,longText,image);
-//       } else {
-//             // if its edit request for existing post
-//              dbResponse = saveIntoDB(id,author,title,longText,image);
-//       }
-      map.put("data",dbResponse);
+       if(id > -1) {
+         
+          map.put("data",Integer.toString(deletePostById(id)));
+       } else {
+          
+            map.put("data","Something wrong with delete. Server error");
+       }
+      
         return map;
+    }
+
+    private int deletePostById(int id) {
+       return new PostRepository().delete(id);
     }
 }

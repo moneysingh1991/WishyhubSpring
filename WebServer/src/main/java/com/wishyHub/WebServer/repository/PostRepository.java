@@ -27,6 +27,7 @@ public class PostRepository {
     /**
      * inserting new data into database
      * @param post 
+     * @Return returning key of new post
      */
      public int insert(Post post) {
          String INSERT_SQL = "INSERT INTO post (author, title, text, image) values (?, ?, ?, ?)";
@@ -46,8 +47,18 @@ public class PostRepository {
 			}
 		}, holder);
 
-		
+		// returning key of new post
 		return holder.getKey().intValue();
+		
+    }
+     
+     public int delete(int id) {
+       
+          String sql = "Update post ";
+          String where = " WHERE postid=" + quote(Integer.toString(id));
+          String set = " SET active = " + quote(Integer.toString(0));
+          sql = sql + set + where;
+		 return DbConfig.jdbcTemplate().update(sql);
 		
     }
      
@@ -105,7 +116,7 @@ public class PostRepository {
       List<Map<String, Object>> result = null;
       String sql = null;
        if(postid == -1) {
-            sql = "SELECT *  FROM wishyhub.post;";
+            sql = "SELECT * FROM wishyhub.post where active = 1 order by timestamp desc;";
         // result = DbConfig.jdbcTemplate().queryForMap(sql);
         
        } else {

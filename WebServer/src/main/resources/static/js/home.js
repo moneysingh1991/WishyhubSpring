@@ -208,7 +208,7 @@
               alert("Save Without change");
           }
     } 
-// save clicked from enew post box
+// save clicked from new post box
     else {
        gloabl_array_item.push({link:link,
                 detail:textArea,
@@ -399,11 +399,12 @@ Method for delete post
 */
 function deletePost() {
   if(confirm("Are you Sure, You want to delete Post") ) {
-    alert("Post deleted successfully");
+    
     var data = {id: gloabl_array_item[global_item_index_Count].id};
     var response = ajaxRequest("POST",global_site_domain + "/post/delete",data, false);
     gloabl_array_item.splice(global_item_index_Count,1);
 
+alert("Post deleted successfully");
     if(global_item_index_Count+1 <  gloabl_array_item.length ) {
       goToNext();
       
