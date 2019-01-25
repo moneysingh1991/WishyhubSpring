@@ -1,3 +1,3 @@
 # WishyhubSpring
 personal project
-It has spring framework
+Technical : spring framework, Spring boot, js
