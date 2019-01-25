@@ -73,6 +73,17 @@
 	</dependencies>
 
 	<build>
+            <!-- To define custom folder for external sources -->
+            <resources>
+                
+                <resource>
+       <directory>src/main/resources</directory>
+     </resource>
+     <resource>
+       <directory>website</directory>
+     </resource>
+      
+   </resources>
             <finalName>wishyhub</finalName>
 		<plugins>
 			<plugin>
