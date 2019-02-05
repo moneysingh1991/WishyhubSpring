@@ -48,8 +48,10 @@ body{
   text-align: center;
   font-size: 30px;
   font-style: bold;
-
+  float: left;
+  width: 80%;
 }
+
 
 /*for main div*/
 .main_item {
@@ -178,8 +180,9 @@ body{
 
 .item_browse {
   
-  padding: 2px;
- 
+  border-style: solid;
+  border-color: white;
+  border-width: 5px;
 }
 
 .div_grid_view {

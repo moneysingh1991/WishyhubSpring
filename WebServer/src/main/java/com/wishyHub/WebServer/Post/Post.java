@@ -39,12 +39,16 @@ public class Post {
     @Column(name="image")
     public String image;
     
-    Post(int id, String author, String title, String longText, String image) {
+    @Column(name="search")
+    public String search;
+    
+    Post(int id, String author, String title, String longText, String image, String search) {
     
         this.id = id;
         this.author = author;
         this.title = title;
         this.longText = longText;
         this.image = image;
+        this.search = search;
      }
 }

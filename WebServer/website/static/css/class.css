@@ -21,6 +21,9 @@ This is css file for all standard class name only
     background: var(--main-button-hover-color);
 }
 
+.margin-top-small {
+    margin-top: : 20px;
+}
 .padding-top-small {
 	padding-top: 20px;
 }
@@ -66,8 +69,11 @@ This is css file for all standard class name only
     width:50%;
 }
 
-.width-70 {
+.width-60 {
     width:60%;
+}
+.width-70 {
+    width:70%;
 }
 
 .icon {
@@ -77,4 +83,21 @@ This is css file for all standard class name only
 
 .icon:hover{
     cursor: pointer;
+}
+
+.width-20 {
+    width:20%;
+}
+
+.tile-shadow {
+   
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      margin: 10px;
+}
+.margin-bottom-15 {
+    margin-bottom: 15px;
+}
+
+.bottom-line {
+    border-bottom: groove;
 }

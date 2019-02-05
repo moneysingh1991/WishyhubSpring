@@ -30,7 +30,7 @@ public class PostRepository {
      * @Return returning key of new post
      */
      public int insert(Post post) {
-         String INSERT_SQL = "INSERT INTO post (author, title, text, image) values (?, ?, ?, ?)";
+         String INSERT_SQL = "INSERT INTO post (author, title, text, image,search) values (?, ?, ?, ?,?)";
        //  System.out.println(sql);
        //   DbConfig.jdbcTemplate().update(sql,post.author, post.title, post.longText ,post.image);
           
@@ -43,6 +43,7 @@ public class PostRepository {
 				ps.setString(2,  post.title);
 				ps.setString(3, post.longText );
                                 ps.setString(4, post.image );
+                                ps.setString(5, post.search );
 				return ps;
 			}
 		}, holder);
@@ -92,6 +93,13 @@ public class PostRepository {
              set = set + " author = " + quote(post.author);
          }
          
+         if(post.search != "") {
+             if(set != "") { 
+                 set = set + " , ";
+               }
+             set = set + " search = " + quote(post.search);
+         }
+         
          if(post.title != "") {
              if(set != "") { 
                  set = set + " , ";
@@ -116,7 +124,7 @@ public class PostRepository {
       List<Map<String, Object>> result = null;
       String sql = null;
        if(postid == -1) {
-            sql = "SELECT * FROM wishyhub.post where active = 1 order by timestamp desc;";
+            sql = "SELECT postid,text,title,image,search,author, date(timestamp) as timestamp  FROM wishyhub.post where active = 1 order by timestamp desc;";
         // result = DbConfig.jdbcTemplate().queryForMap(sql);
         
        } else {

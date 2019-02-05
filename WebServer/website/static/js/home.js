@@ -28,11 +28,27 @@
 
        var title = document.getElementById("page_selection_title");
        title.innerHTML = val.innerHTML;
+      var temp_array_item = customFilter(gloabl_array_item,function(obj) {
+        if(obj.search != null) {
+            return obj.search.indexOf(val.innerHTML.toLowerCase()) != -1;
+          } 
       
+      });
+
+      galleryView(temp_array_item);
       //title.innerHTML = getContent(val.innerHTML.toUpperCase());
 
   }
 
+function customFilter(array, test){
+    var subArr =[];
+    for (var i = 0; i < array.length; i++) {
+       if(test( array[i]))
+          subArr.push(array[i]);
+    }
+
+    return subArr;
+}
 
   function getContent(val) {
       var item = {"ONE":"ONE page content","TWO":"TWO page content"};
@@ -114,7 +130,8 @@
        title:gloabl_array_item[global_item_index_Count]["title"],
        link:gloabl_array_item[global_item_index_Count]["link"],
        upload:gloabl_array_item[global_item_index_Count]["upload"],
-       detail:gloabl_array_item[global_item_index_Count]["detail"]
+       detail:gloabl_array_item[global_item_index_Count]["detail"],
+       search:gloabl_array_item[global_item_index_Count]["search"]
       }
        document.getElementById('modal-content-main').innerHTML = getEditPopupContent(valueArr);
 
@@ -158,12 +175,15 @@
        event.preventDefault();
   }
 
+
+
   // Save item on click on save
   function itemSave(edit) {
     var updateflag = false;
     var author = $("[name=author_input]").val().trim();
     var title = $("[name=title_input]").val().trim();
     var link = $("[name=link_input]").val().trim();
+    var search = $("[name=search_input]").val().trim().toLowerCase();
     //var image =  $("[name=UploadImage_input[]]")[0].files;
 
     var uploadImage = document.getElementsByName("UploadImage_input[]");
@@ -184,7 +204,7 @@
 // save clicked from edit box
     if(edit) {
           if (author != gloabl_array_item[global_item_index_Count].author || title != gloabl_array_item[global_item_index_Count].title || 
-            link != gloabl_array_item[global_item_index_Count].link || textArea != gloabl_array_item[global_item_index_Count].detail ) {
+            link != gloabl_array_item[global_item_index_Count].link || textArea != gloabl_array_item[global_item_index_Count].detail|| search != gloabl_array_item[global_item_index_Count].search ) {
 
             // something got changed in post 
           
@@ -193,6 +213,7 @@
                           link:link,
                           detail:textArea,
                           title:title,
+                          search:search,
                           author:author, 
                           date:getCurrentDate()
                 };
@@ -202,6 +223,7 @@
                   title:title, 
                   link:link, 
                   image:file,
+                  search:search,
                   textArea:textArea};
              updateflag = true;
           } else {
@@ -213,11 +235,12 @@
        gloabl_array_item.push({link:link,
                 detail:textArea,
                 title:title,
-                author:author, 
+                author:author,
+                search:search, 
                 date:getCurrentDate()
       });
 
-       data = {edit:edit,id:-1, author: author, title:title, link:link, image:file, textArea:textArea};
+       data = {edit:edit,id:-1, author: author, title:title, link:link, image:file, search:search,textArea:textArea};
        global_item_index_Count = gloabl_array_item.length -1;
 
        // to send data for new post
@@ -231,7 +254,11 @@ if(updateflag) {
     var response = ajaxRequest("post",global_site_domain + "/post/save",data, false);
 
     if(response.data.error == "success") {
+
         setMainContentInList();
+         alert("Save successfully");
+
+         // if response has number value (id for new post) the mean its for new post
       if(response.data.data && !isNaN(response.data.data)) {
        gloabl_array_item[global_item_index_Count].id = Number(response.data.data);
       }
@@ -323,6 +350,20 @@ This helper function will save update main item content
      
   }
 
+function tableResponse(table,file,message) {
+   var table_tr = document.createElement('TR');
+          table_tr.innerHTML = '<td>'+  global_total_uploaded_count +'</td>';
+          global_total_uploaded_count++;
+          table_tr.innerHTML += '<td>'+  file.name +'</td>';
+          table_tr.innerHTML += '<td>'+  Math.ceil(file.size/1024) +' KB</td>';
+          table_tr.innerHTML += '<td> '+ message +' </td>';
+          table.appendChild(table_tr);
+}
+  /*
+  send file to back end service
+  param file,table
+  */
+
   function sendFile(file, table) {
    console.log("uploading");
     var url = global_site_domain + "/upload";
@@ -341,25 +382,13 @@ This helper function will save update main item content
 
        success: function(result){
           // comment hello
-          console.log(result);
-          var table_tr = document.createElement('TR');
-          table_tr.innerHTML = '<td>'+  global_total_uploaded_count +'</td>';
-          global_total_uploaded_count++;
-          table_tr.innerHTML += '<td>'+  file.name +'</td>';
-          table_tr.innerHTML += '<td>'+  Math.ceil(file.size/1024) +' KB</td>';
-          table_tr.innerHTML += '<td> uploaded </td>';
-          table.appendChild(table_tr);
+         // console.log(result);
+         tableResponse(table,file,"Success")
        
       },
       error:function(result) {
         console.log("Error in file uploading");
-          var table_tr = document.createElement('TR');
-          table_tr.innerHTML = '<td>'+  global_total_uploaded_count +'</td>';
-          global_total_uploaded_count++;
-          table_tr.innerHTML += '<td>'+  file.name +'</td>';
-          table_tr.innerHTML += '<td>'+  Math.ceil(file.size/1024) +' KB</td>';
-          table_tr.innerHTML += '<td> Failed </td>';
-          table.appendChild(table_tr);
+         tableResponse(table,file,"Failed");
 
       }
 
@@ -426,8 +455,7 @@ alert("Post deleted successfully");
 
          global_item_index_Count -=1;
         div_main.innerHTML = getMainContent(global_item_index_Count);
-       
-        
+   
     }  
 
     else {
@@ -466,6 +494,22 @@ alert("Post deleted successfully");
  
   }
 
+/*
+  @param id
 
+   function will set post according to click on the gallery View
+
+  */
+  function setPostOnMainItem(id) {
+    var div_main = document.getElementById('main_top');
+   
+    if(gloabl_array_item.length > id && (-1 < id )) {
+         global_item_index_Count = id;
+        div_main.innerHTML = getMainContent(global_item_index_Count);
+        
+    } else {
+      alert("Post not exist")
+    }
+  }
 
 

@@ -55,3 +55,30 @@ which will show all files to copy link
      //open popup
       openPopup({id:"browse_modal"});
   }
+
+  /*
+This function will set gallery view 
+*/
+  function galleryView(arr) {
+
+     // Add element to main_top
+   
+     if(arr) {
+       document.getElementById('main_top').innerHTML = getGalleryView(arr);
+     } else {
+       document.getElementById('main_top').innerHTML = getGalleryView(gloabl_array_item);
+     }
+  }
+
+    /*
+This function will set gallery view 
+*/
+  function listView(arr) {
+
+     // Add element to main_top
+   if(arr) {
+       document.getElementById('main_top').innerHTML = getListView(arr);
+     } else {
+       document.getElementById('main_top').innerHTML = getListView(gloabl_array_item);
+     }
+  }

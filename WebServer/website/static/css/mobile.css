@@ -39,8 +39,13 @@ This is css file for mobile related or when screen size decrease
   width: 100%;
 }
  
+ .nav_menu_1 {
+      
+   width:100%;
+  }
+
   .nav-menu {
-   float: none;   
+   float: left;   
    width:100%;
   }
   

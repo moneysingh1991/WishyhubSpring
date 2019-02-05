@@ -22,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 
 @RestController
-public class MainController {
+public class ErrorController {
     
 @GetMapping("/error")
 

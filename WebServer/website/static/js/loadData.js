@@ -1,33 +1,34 @@
-// Load data for sidebar
-loadDataSideBar();
+
 
 
 // load data for Post
 loadPostData();
 
+// Load data for sidebar
+loadDataSideBar();
 // Load data for mainContent
 loadDataMainContent();
 
 
-
+// add available service like (new post, upload) on the navigation bar 
 addService();
 
+// function to convert first char to capital of givin param
+function firstCapconvert(string) {
+  return  string.charAt(0).toUpperCase() + string.slice(1);
+}
 // load sidebar data
 function loadDataSideBar() {
 	
-
-	var item = ["Multithread", "Java", "polymorphisam", "OOP","Big data","hadoop","linux","ssh",
-	"linux command","Android","Maven","Jenkin","Kafka","Tomcat","Apple","IOS","Class","Fragment","Iot","Virus","Process","Window Command","zip file","class java"];
-
 	var ul = document.getElementById("myMenu");
 
-	for (var i = 0; i < item.length; i++) {
+	for (let val of sidebar_items) {
 
 		var li = document.createElement("li");
 		var a = document.createElement("a");
 	         //a.setAttribute("href", item[i]);
 	         a.setAttribute("onclick", "selectSideMenu(this)");
-	         a.appendChild(document.createTextNode(item[i]));
+	         a.appendChild(document.createTextNode(firstCapconvert(val)));
 	         li.appendChild(a);
 	         ul.appendChild(li);
 	     }
@@ -36,7 +37,9 @@ function loadDataSideBar() {
 function loadDataMainContent() {
 
     var div_main = document.getElementById('main_top');
-	  div_main.innerHTML += getMainContent();
+	  // getMainContent();
+    galleryView();
+   
 }
 
 // load servies
@@ -61,6 +64,7 @@ function loadFileLinks() {
 
               for (var i = 0 ; i <result.length ; i++) {
                  gloabl_file_browse_array.push(global_site_domain+"/file/img?fileid=" + result[i].fileid);
+                 
   
               }
           }, error: function(result) {
@@ -87,7 +91,21 @@ function loadPostData() {
               for (var i = 0 ; i <result.length ; i++) {
                if(result[i]) {              
                 gloabl_array_item.push({id:result[i].postid, link:result[i].image,title: result[i].title, detail:result[i].text, 
-                author:result[i].author, date:result[i].timestamp});
+                author:result[i].author, search:result[i].search,date:result[i].timestamp});
+
+                var temp_search_arr = result[i].search;
+
+                if(temp_search_arr != null) {
+                var temp_search_arr = result[i].search.split(",");
+                if(Array.isArray(temp_search_arr)) {
+                     for (var j = 0 ; j <temp_search_arr.length ; j++) {
+                         sidebar_items.add(temp_search_arr[j]);
+                    }
+                   
+                } else if(temp_search_arr != null) {
+                   sidebar_items.add(temp_search_arr);
+                } 
+               }
                }
   
               }

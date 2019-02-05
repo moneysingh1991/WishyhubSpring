@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.wishyHub.WebServer.Uploader;
+import com.wishyHub.WebServer.Global.GetIP;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wishyHub.WebServer.repository.uploadRepository;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -29,6 +31,7 @@ import java.util.Map;
 @RequestMapping(path="/file")
 public class Filedownloader {
     
+   
 //    public ResponseEntity<?> uploadFileMulti(
 //            @RequestParam("extraField") String extraField,
 //            @RequestParam("files") MultipartFile[] uploadfiles) {
@@ -38,8 +41,10 @@ public class Filedownloader {
 //    public ResponseEntity<byte[]> getImage() throws IOException {
 
     @GetMapping("") 
-public ResponseEntity<byte[]> getFile( @RequestParam("fileid") int fileid) throws FileNotFoundException, IOException,org.springframework.dao.EmptyResultDataAccessException {
-        
+public ResponseEntity<byte[]> getFile( @RequestParam("fileid") int fileid, HttpServletRequest request) throws FileNotFoundException, IOException,org.springframework.dao.EmptyResultDataAccessException {
+          
+             // add log of request ip
+        GetIP.addlog(request);
         return ResponseEntity
                 .ok()
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
@@ -47,7 +52,10 @@ public ResponseEntity<byte[]> getFile( @RequestParam("fileid") int fileid) throw
     }
 
 @GetMapping("/img/ALL")
-    public ResponseEntity<List<Map<String, Object>>> downloadAllImage() throws FileNotFoundException, IOException,org.springframework.dao.EmptyResultDataAccessException {
+    public ResponseEntity<List<Map<String, Object>>> downloadAllImage(HttpServletRequest request) throws FileNotFoundException, IOException,org.springframework.dao.EmptyResultDataAccessException {
+          
+             // add log of request ip
+        GetIP.addlog(request);
         
         return ResponseEntity
                 .ok()
@@ -56,7 +64,11 @@ public ResponseEntity<byte[]> getFile( @RequestParam("fileid") int fileid) throw
     }
     
     @GetMapping("/img")
-    public ResponseEntity<byte[]> downloadImage( @RequestParam("fileid") int fileid) throws FileNotFoundException, IOException,org.springframework.dao.EmptyResultDataAccessException {
+    public ResponseEntity<byte[]> downloadImage( @RequestParam("fileid") int fileid, HttpServletRequest request) throws FileNotFoundException, IOException,org.springframework.dao.EmptyResultDataAccessException {
+        
+          
+             // add log of request ip
+        GetIP.addlog(request);
         
         return ResponseEntity
                 .ok()
@@ -64,8 +76,12 @@ public ResponseEntity<byte[]> getFile( @RequestParam("fileid") int fileid) throw
                 .body(getActualFile(fileid));
     }
    @GetMapping("/pdf") 
-public ResponseEntity<byte[]> getPdf( @RequestParam("fileid") int fileid) throws FileNotFoundException, IOException,org.springframework.dao.EmptyResultDataAccessException {
+public ResponseEntity<byte[]> getPdf( @RequestParam("fileid") int fileid, HttpServletRequest request) throws FileNotFoundException, IOException,org.springframework.dao.EmptyResultDataAccessException {
 
+      
+             // add log of request ip
+        GetIP.addlog(request);
+        
         return ResponseEntity
                 .ok()
                 .contentType(MediaType.APPLICATION_PDF)

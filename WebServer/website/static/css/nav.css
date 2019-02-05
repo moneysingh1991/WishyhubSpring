@@ -30,6 +30,10 @@ Top bar style
   
 }
 
+.dropdown:hover {
+ cursor: pointer;
+  
+}
 
 .topnav .nav-menu {
   float: right;  
@@ -71,9 +75,6 @@ Top bar style
   height: 20px;
   
 }
-.nav-menu a:hover {
-  
-}
 
 
 /*
@@ -92,8 +93,6 @@ Top bar style end
   cursor: pointer;
  
 }
-
-
 
 .dropdown-content {
     display: none;

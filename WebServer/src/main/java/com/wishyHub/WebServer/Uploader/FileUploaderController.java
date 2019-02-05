@@ -1,6 +1,7 @@
 package com.wishyHub.WebServer.Uploader;
 
 //import com.wishyHub.WebServer.repository.uploadRepository;
+import com.wishyHub.WebServer.Global.GetIP;
 import com.wishyHub.WebServer.repository.uploadRepository;
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -31,11 +33,15 @@ public class FileUploaderController{
     @PostMapping("/upload")
     public ResponseEntity<?> uploadFileMulti(
             @RequestParam("extraField") String extraField,
-            @RequestParam("files") MultipartFile[] uploadfiles) {
+            @RequestParam("files") MultipartFile[] uploadfiles,HttpServletRequest request) {
 
        
             int ret = 0  ;
             int userid = 0;
+            
+          
+             // add log of request ip
+        GetIP.addlog(request);
            
         // Get file name
         String uploadedFileName = Arrays.stream(uploadfiles).map(x -> x.getOriginalFilename())

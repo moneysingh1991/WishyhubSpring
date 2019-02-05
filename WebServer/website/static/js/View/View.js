@@ -47,7 +47,7 @@ return navigation content
 */
 
 function getNavBarContent() {
-    var navbar = '<div class="left width-70"><a href="">Home</a>'+
+    var navbar = '<div class="nav_menu_1 left width-70"><a href="">Home</a>'+
     ' <div class="search-container right"><input id="id_main_search" onkeyup="searchFunction()" type="text" placeholder="Search.." name="search">'+
       '<button type="submit" ><img src="img/search.svg"></button></div></div>'+
      '<div class="nav-menu right">'+
@@ -94,9 +94,10 @@ function getEditPopupContent(valueArr) {
    + ' <input class="popup_input" type="text" value= " '+ valueArr["author"]+'" placeholder="Enter Author Name" name="author_input" required>'
     + '<label for="title"><b>Title</b></label> <input class="popup_input" type="text" value= " '+ valueArr["title"]+'" placeholder="Enter title" name="title_input" required>'
    
-    + '<label for="title"><b>Link</b></label> <input class="popup_input" type="text" value= " '+ valueArr["link"]+'" placeholder="Enter Link" name="link_input" required>'
+    + '<label for="title"><b>Image Link</b></label> <input class="popup_input" type="text" value= " '+ valueArr["link"]+'" placeholder="Enter Link" name="link_input" required>'
     + getFileUploader()
     + '<div class = "padding-top-small"><textarea  onkeydown="textareaKeydown()" id = "textAreaid" class= "textArea" placeholder="Enter Code" name="textarea_input">  '+ valueArr["detail"]+'</textarea></div>'
+    + '<label class= "margin-top-small" for="Searh_keyword"><b>Search Keyword</b></label> <input class="popup_input" type="text" value= " '+ valueArr["search"]+'" placeholder="Enter keyword for search separated by comma" name="search_input" required>'
     + '<div class = "padding-top-large"><button class="button medium fullwidth" onclick="itemSave('+ edit+')" type="submit">Save</button></div>'
  
   + '</div>';
@@ -127,5 +128,37 @@ function getBrowse() {
   }
   div += img + '</div>';
   return div;
+
+}
+
+/*
+Create Gallery Browser to get all files
+*/
+function getGalleryView(arr) {
+  
+ 
+  var item = '';
+  for(var i = 0; i < arr.length; i++) {
+    item += '<div  class="item_browse  tile-shadow"> <a onclick="setPostOnMainItem('+i+')"> <img class="browse_item_img" src='+arr[i].link+'><p>'+arr[i].title+'</p></a></div>';
+ //item += '<div  class="item_browse"> <a onclick="setPostOnMainItem('+i+')"> <img class="browse_item_img" src='+gloabl_array_item[i].link+'</a><p>'+gloabl_array_item[i].title+'</p></a></div>';
+  }
+  return  '<div class="div_grid_view" >' +item + '</div>';
+  
+
+}
+
+/*
+Create List Browser to get all files
+*/
+function getListView(arr) {
+  
+ 
+  var item = '';
+  for(var i = 0; i < arr.length; i++) {
+    item += '<div class="tile-shadow margin-bottom-15"><div class="row"><div  class="width-20 left"> <a onclick="setPostOnMainItem('+i+')"> <img class="browse_item_img" src='+arr[i].link+'><p>'+arr[i].title+'</p></a></div><div class="width-70 right"><p>'+arr[i].detail+'</p></div></div></div>';
+ //item += '<div  class="item_browse"> <a onclick="setPostOnMainItem('+i+')"> <img class="browse_item_img" src='+gloabl_array_item[i].link+'</a><p>'+gloabl_array_item[i].title+'</p></a></div>';
+  }
+  return  '<div class="div_list_view" >' +item + '</div>';
+  
 
 }
